@@ -15,4 +15,8 @@ class Companies extends Model
     public function employe(){
         return $this->hasOne(Employe::class,'companies_id','id');
     }
+
+    public function getLogoPathAttribute($value){
+        return url('storage/' .$value);
+    }
 }

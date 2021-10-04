@@ -48,7 +48,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/detail-krs') }}">
+                                <a href="{{ url('/companies/create') }}">
                                     <span class="sub-item">Add Companies</span>
                                 </a>
                             </li>
