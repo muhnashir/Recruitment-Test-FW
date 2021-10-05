@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Companies;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\CompaniesController;
 
 /*
@@ -14,13 +16,17 @@ use App\Http\Controllers\CompaniesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){
+    Route::get('/companies/downloadPdf', [CompaniesController::class, 'downloadPdf'])->name('companies.downloadPdf');
     Route::resource('companies', CompaniesController::class);
+    Route::get('/employe/getCompanies', [EmployeController::class, 'getCompanies'])->name('employe.getCompanies');
+    Route::resource('employe', EmployeController::class);
+
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

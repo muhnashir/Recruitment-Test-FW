@@ -13,6 +13,6 @@ class Employe extends Model
     ];
 
     public function companies(){
-        return $this->belongsTo(User::class,'companies_id','id');
+        return $this->belongsTo(Companies::class,'companies_id','id');
     }
 }

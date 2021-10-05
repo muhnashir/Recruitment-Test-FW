@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use PDF;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompaniesRequest;
+
 
 class CompaniesController extends Controller
 {
@@ -60,7 +62,7 @@ class CompaniesController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -90,6 +92,17 @@ class CompaniesController extends Controller
         $service = new \App\Services\CompaniesService();
         $result = $service->update($data, $request, $id);
         return back()->with('alert-success', "data berhasil di ubah");
+    }
+
+
+    public function downloadPdf()
+    {
+        $repository = new \App\Repositories\CompaniesRepository();
+        $collection = $repository->listAll();
+    
+        $pdf = PDF::loadview('pages.companies.download-pdf', compact('collection'))->setPaper('a4','landscape')->setWarnings(false);
+        
+        return $pdf->download('companies.pdf');
     }
 
     /**

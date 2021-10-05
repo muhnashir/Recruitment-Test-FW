@@ -14,6 +14,10 @@ class CompaniesRepository
         return Companies::paginate(2);
     }
 
+    public function listAll(){
+        return Companies::all();
+    }
+
     public function destroy($id){
         $item = Companies::findOrFail($id);
         $item->delete();
@@ -22,7 +26,7 @@ class CompaniesRepository
     }
 
     public function edit($id){
-        $item = Companies::findOrFail($id)->first();
+        $item = Companies::where('id',$id)->first();
         return $item;
     }
 
@@ -30,6 +34,11 @@ class CompaniesRepository
         $companies = Companies::find($id);
         $companies->update($data);
         return true;
+    }
+
+    public function listCompanies(){
+        $companies = Companies::paginate(5);
+        return $companies;
     }
 }
 

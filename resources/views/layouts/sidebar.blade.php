@@ -65,12 +65,12 @@
                     <div class="collapse" id="bimbingan">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{ url('/khs') }}">
+                                <a href="{{ url('employe') }}">
                                     <span class="sub-item">List employe</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/khs') }}">
+                                <a href="{{ url('employe/create') }}">
                                     <span class="sub-item">Add employe</span>
                                 </a>
                             </li>

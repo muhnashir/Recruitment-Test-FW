@@ -46,6 +46,8 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
 
 
@@ -211,6 +213,7 @@
 	   {{-- SWEET ALERT --}}
 	<script src="{{ url('js/plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
 	<script src="{{ url('js/plugins/sweetalert/sweet.js') }}"></script>
+	@stack('scripts')
 	@yield('script')
 	<script>
 		Circles.create({
