@@ -11,7 +11,7 @@ class CompaniesRepository
     }
 
     public function list(){
-        return Companies::paginate(6);
+        return Companies::paginate(2);
     }
 
     public function destroy($id){
@@ -19,6 +19,17 @@ class CompaniesRepository
         $item->delete();
 
         return $item;
+    }
+
+    public function edit($id){
+        $item = Companies::findOrFail($id)->first();
+        return $item;
+    }
+
+    public function update($data, $id){
+        $companies = Companies::find($id);
+        $companies->update($data);
+        return true;
     }
 }
 

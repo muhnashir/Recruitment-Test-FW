@@ -14,7 +14,7 @@
                         <div class="card-body">
 
                             <div class="table-responsive">
-                                <table id="add-row" class="display table table-striped table-hover">
+                                <table id="" class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th width="5%">Nomor</th>
@@ -33,7 +33,7 @@
                                             <td><img src="{{ url($item->logoPath)}}" alt="" style="width:80px"></td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="#" type="button" data-toggle="tooltip" title=""
+                                                    <a href="{{ route('companies.edit', $item->id) }}" type="button" data-toggle="tooltip" title=""
                                                         class="btn btn-link btn-primary btn-lg"
                                                         data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
@@ -57,6 +57,9 @@
 
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-end">                                   
+                                    {{ $result->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>

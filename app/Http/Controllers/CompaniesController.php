@@ -15,8 +15,8 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        $service = new \App\Repositories\CompaniesRepository();
-        $result = $service->list();
+        $repository = new \App\Repositories\CompaniesRepository();
+        $result = $repository->list();
         return view('pages.companies.index', compact('result'));
     }
 
@@ -41,11 +41,11 @@ class CompaniesController extends Controller
         $data = $request->validated();
 
         try{
-            $service = new \App\Repositories\CompaniesRepository();
+            $repository = new \App\Repositories\CompaniesRepository();
             $data['logoPath'] = $request->logoPath->store(
                 'app/company','public'
             );
-            $result = $service->store($data);
+            $result = $repository->store($data);
             return redirect('/companies')->with('alert-success','Data Berhasil ditambah');
         }catch(Exception $e){
             return redirect('/companies')->with('alert-failed','Data gagal di tambahkan');
@@ -71,7 +71,10 @@ class CompaniesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $repository = new \App\Repositories\CompaniesRepository();
+        $result = $repository->edit($id);
+        
+        return view('pages.companies.edit', compact("result"));
     }
 
     /**
@@ -81,9 +84,12 @@ class CompaniesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CompaniesRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+        $service = new \App\Services\CompaniesService();
+        $result = $service->update($data, $request, $id);
+        return back()->with('alert-success', "data berhasil di ubah");
     }
 
     /**
